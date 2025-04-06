@@ -7,7 +7,7 @@ function makeCalculator() {
   let result = 0;
 
   function operate(callback, value) {
-    result = callback(value);
+    callback(value);
 
     return this;
   }
@@ -21,25 +21,28 @@ function makeCalculator() {
   function add(value) {
     result += value;
 
-    return result;
+    return this;
   }
 
   function subtract(value) {
     result -= value;
 
-    return result;
+    return this;
   }
 
   function multiply(value) {
     result *= value;
 
-    return result;
+    return this;
   }
 
   function divide(value) {
+    if (value === 0) {
+      throw new Error('Division by zero is not allowed');
+    }
     result /= value;
 
-    return result;
+    return this;
   }
 
   return {
